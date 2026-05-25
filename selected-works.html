@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selected Works — Bandith Say</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --paper:#FBFAF6;--ink:#1C1A17;--ink-soft:#5B564E;--ink-faint:#948E83;
+      --line:rgba(28,26,23,.13);--line-soft:rgba(28,26,23,.07);
+      --clay:#B5532E;--clay-dark:#8A3E22;--sand:#F1ECE2;
+      --disp:'Bricolage Grotesque',system-ui,sans-serif;
+      --body:'Figtree',system-ui,sans-serif;
+      --ease:cubic-bezier(.22,.6,.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    ::selection{background:var(--clay);color:#fff}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.6rem 3.5rem;position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+    nav.scrolled{border-color:var(--line)}
+    .brand{display:flex;flex-direction:column;line-height:1.15}
+    .brand-name{font-family:var(--disp);font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+    .brand-role{font-size:.72rem;font-weight:500;letter-spacing:.04em;color:var(--ink-faint)}
+    .nav-links{display:flex;gap:.5rem;list-style:none}
+    .nav-links a{font-size:.82rem;font-weight:500;padding:.45rem .9rem;border-radius:2rem;transition:background .2s,color .2s;color:var(--ink-soft)}
+    .nav-links a:hover{background:var(--sand);color:var(--ink)}
+    .nav-links a.active{background:var(--ink);color:var(--paper)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:820px){nav{padding:1.2rem 1.4rem}.nav-links a{padding:.4rem .7rem}}
+  </style>
+</head>
+<body>
+<style>
+  .works-hero{padding:5rem 3.5rem 3.5rem;max-width:1000px;animation:fadeUp .9s var(--ease) both}
+  .works-hero .label{font-family:var(--disp);font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:1.3rem}
+  .works-hero h1{font-family:var(--disp);font-size:clamp(2.6rem,5.5vw,4.6rem);font-weight:500;letter-spacing:-.025em;line-height:1.05;margin-bottom:1.4rem}
+  .works-hero p{font-size:1.05rem;color:var(--ink-soft);max-width:620px}
+
+  .works-list{padding:1rem 3.5rem 4rem;display:flex;flex-direction:column;gap:2.5rem;max-width:1240px}
+
+  .work-item{display:block;border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:border-color .3s var(--ease),transform .3s var(--ease);background:var(--paper);animation:fadeUp .7s var(--ease) both}
+  .work-item:hover{border-color:var(--ink);transform:translateY(-4px)}
+  .work-item:nth-child(2){animation-delay:.08s}
+  .work-item:nth-child(3){animation-delay:.16s}
+
+  /* COVER */
+  .cover{height:300px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:2rem}
+  .cover svg.bg{position:absolute;inset:0;width:100%;height:100%}
+  .cover-index{position:absolute;top:1.6rem;left:2rem;font-family:var(--disp);font-size:.8rem;font-weight:600;letter-spacing:.1em}
+  .cover-type{position:absolute;top:1.6rem;right:2rem;font-size:.74rem;font-weight:600;letter-spacing:.05em;padding:.35rem .85rem;border-radius:2rem;backdrop-filter:blur(4px)}
+
+  /* INFO */
+  .work-info{padding:1.8rem 2rem 2rem;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end}
+  .work-info h2{font-family:var(--disp);font-size:1.85rem;font-weight:600;letter-spacing:-.015em;line-height:1.1;margin-bottom:.5rem;transition:color .2s}
+  .work-item:hover .work-info h2{color:var(--clay)}
+  .work-info .desc{font-size:.95rem;color:var(--ink-soft);max-width:600px}
+  .work-meta{display:flex;gap:1.5rem;margin-top:.9rem;flex-wrap:wrap}
+  .work-meta span{font-size:.78rem;color:var(--ink-faint)}
+  .work-meta span strong{display:block;font-family:var(--disp);font-size:.84rem;font-weight:600;color:var(--ink);margin-top:.1rem}
+  .view-cta{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--disp);font-size:.85rem;font-weight:600;color:var(--ink);white-space:nowrap;padding:.7rem 1.3rem;border:1px solid var(--line);border-radius:2rem;transition:background .25s,color .25s,border-color .25s}
+  .work-item:hover .view-cta{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .view-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* EARLIER WORK */
+  .earlier{padding:1rem 3.5rem 4rem;max-width:1240px}
+  .earlier-head{font-family:var(--disp);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1.2rem;padding-top:2rem;border-top:1px solid var(--line)}
+  .earlier-card{padding:1.6rem 1.8rem;border:1px solid var(--line);border-radius:18px;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center}
+  .earlier-card h3{font-family:var(--disp);font-size:1.2rem;font-weight:600}
+  .earlier-card p{font-size:.9rem;color:var(--ink-soft);margin-top:.25rem;max-width:620px}
+  .earlier-card .yr{font-size:.82rem;color:var(--ink-faint);white-space:nowrap}
+
+  .contact{margin:3rem 3.5rem 0;padding:4rem 3rem;background:var(--ink);border-radius:24px;color:var(--paper);text-align:center}
+  .contact h2{font-family:var(--disp);font-size:clamp(2rem,4vw,3rem);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem}
+  .contact p{color:rgba(251,250,246,.65);max-width:480px;margin:0 auto 2rem;font-size:.98rem}
+  .contact-mail{display:inline-block;font-family:var(--disp);font-size:1.2rem;font-weight:600;color:var(--paper);padding:.9rem 2rem;border:1px solid rgba(251,250,246,.3);border-radius:2rem;transition:background .25s,border-color .25s}
+  .contact-mail:hover{background:var(--clay);border-color:var(--clay)}
+  footer{padding:3rem 3.5rem;display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink-faint)}
+
+  @media(max-width:820px){
+    .works-hero,.works-list,.earlier{padding-left:1.4rem;padding-right:1.4rem}
+    .cover{height:200px;padding:1.4rem}
+    .cover-index,.cover-type{top:1.2rem}
+    .cover-index{left:1.4rem}.cover-type{right:1.4rem}
+    .work-info{grid-template-columns:1fr;padding:1.5rem}
+    .earlier-card{grid-template-columns:1fr;gap:.5rem}
+    .contact{margin:2rem 1.4rem 0;padding:3rem 1.5rem}
+    footer{padding:2rem 1.4rem;flex-direction:column;gap:.5rem}
+  }
+</style>
+
+<nav id="nav">
+  <a href="index.html" class="brand">
+    <span class="brand-name">Bandith Say</span>
+    <span class="brand-role">Product &amp; Operations Leader</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">About</a></li>
+    <li><a href="selected-works.html" class="active">Selected Works</a></li>
+  </ul>
+</nav>
+
+<header class="works-hero">
+  <p class="label">Selected Works</p>
+  <h1>Three ventures, built end&#8209;to&#8209;end.</h1>
+  <p>A decade of building products and businesses across education, recruitment technology, and real estate &#8212; each taken from concept to long-term operation.</p>
+</header>
+
+<div class="works-list">
+
+  <!-- BAMBOO -->
+  <a href="bamboo-case-study.html" class="work-item">
+    <div class="cover" style="background:#E5E9DD">
+      <svg class="bg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1200" height="300" fill="#E5E9DD"/>
+        <g stroke="#7C8C66" stroke-width="3" fill="none" opacity="0.55">
+          <path d="M180 320 C 180 220 195 160 175 60"/><path d="M250 320 C 250 200 268 150 245 30"/>
+          <path d="M320 320 C 320 230 305 170 330 70"/><path d="M980 320 C 980 210 998 150 975 40"/>
+          <path d="M1050 320 C 1050 230 1035 160 1060 60"/>
+        </g>
+        <g fill="#7C8C66" opacity="0.4">
+          <ellipse cx="175" cy="60" rx="34" ry="13" transform="rotate(-32 175 60)"/>
+          <ellipse cx="245" cy="30" rx="40" ry="15" transform="rotate(20 245 30)"/>
+          <ellipse cx="330" cy="70" rx="36" ry="13" transform="rotate(-18 330 70)"/>
+          <ellipse cx="975" cy="40" rx="38" ry="14" transform="rotate(28 975 40)"/>
+          <ellipse cx="1060" cy="60" rx="34" ry="13" transform="rotate(-25 1060 60)"/>
+        </g>
+        <circle cx="600" cy="150" r="78" fill="#4A5D3F" opacity="0.12"/>
+      </svg>
+      <span class="cover-index" style="color:#3D4A33">01 / Education Product</span>
+      <span class="cover-type" style="background:rgba(74,93,63,.16);color:#3D4A33">12-Year Build &amp; Exit</span>
+    </div>
+    <div class="work-info">
+      <div>
+        <h2>Bamboo International School</h2>
+        <p class="desc">An affordable international school for middle-income families in Phnom Penh &#8212; a hybrid education product combining Montessori, Pearson Global, and Cambodia&#8217;s national curriculum.</p>
+        <div class="work-meta">
+          <span>Role<strong>Founder &amp; Product Lead</strong></span>
+          <span>Timeline<strong>2012 &#8211; 2024</strong></span>
+          <span>Peak<strong>130 students &#183; 50 staff</strong></span>
+        </div>
+      </div>
+      <span class="view-cta">Read Case Study <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </div>
+  </a>
+
+  <!-- A1CAREER -->
+  <a href="a1career-case-study.html" class="work-item">
+    <div class="cover" style="background:#DEE5E9">
+      <svg class="bg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1200" height="300" fill="#DEE5E9"/>
+        <g stroke="#4E6C7E" stroke-width="2" opacity="0.5">
+          <line x1="300" y1="80" x2="500" y2="150"/><line x1="500" y1="150" x2="700" y2="90"/>
+          <line x1="700" y1="90" x2="900" y2="170"/><line x1="500" y1="150" x2="620" y2="240"/>
+          <line x1="300" y1="80" x2="430" y2="220"/><line x1="900" y1="170" x2="780" y2="250"/>
+        </g>
+        <g fill="#4E6C7E">
+          <circle cx="300" cy="80" r="18" opacity="0.7"/><circle cx="500" cy="150" r="26" opacity="0.85"/>
+          <circle cx="700" cy="90" r="16" opacity="0.65"/><circle cx="900" cy="170" r="22" opacity="0.75"/>
+          <circle cx="620" cy="240" r="14" opacity="0.55"/><circle cx="430" cy="220" r="13" opacity="0.5"/>
+          <circle cx="780" cy="250" r="15" opacity="0.6"/>
+        </g>
+      </svg>
+      <span class="cover-index" style="color:#385360">02 / Recruitment Platform</span>
+      <span class="cover-type" style="background:rgba(78,108,126,.18);color:#385360">Web &#183; iOS &#183; Android</span>
+    </div>
+    <div class="work-info">
+      <div>
+        <h2>A1Career</h2>
+        <p class="desc">A two-sided recruitment platform built to modernize hiring in Cambodia &#8212; shifting recruitment from passive job ads to active candidate matching.</p>
+        <div class="work-meta">
+          <span>Role<strong>Co-Founder &amp; Product Strategist</strong></span>
+          <span>Type<strong>Web &amp; Mobile Marketplace</strong></span>
+          <span>Users<strong>Employers &amp; Job Seekers</strong></span>
+        </div>
+      </div>
+      <span class="view-cta">Read Case Study <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </div>
+  </a>
+
+  <!-- MEKONGVIEW -->
+  <a href="mekongview-case-study.html" class="work-item">
+    <div class="cover" style="background:#EFE0D5">
+      <svg class="bg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1200" height="300" fill="#EFE0D5"/>
+        <path d="M0 210 Q 300 175 600 205 T 1200 200 V300 H0 Z" fill="#C9A98E" opacity="0.55"/>
+        <path d="M0 245 Q 300 215 600 245 T 1200 240 V300 H0 Z" fill="#B5532E" opacity="0.35"/>
+        <g fill="#9A7359" opacity="0.7">
+          <rect x="180" y="70" width="40" height="140"/><rect x="235" y="40" width="48" height="170"/>
+          <rect x="298" y="95" width="38" height="115"/>
+          <rect x="880" y="55" width="46" height="155"/><rect x="940" y="85" width="40" height="125"/>
+          <rect x="992" y="35" width="44" height="175"/>
+        </g>
+        <circle cx="600" cy="95" r="44" fill="#B5532E" opacity="0.4"/>
+      </svg>
+      <span class="cover-index" style="color:#8A3E22">03 / Real Estate Product</span>
+      <span class="cover-type" style="background:rgba(181,83,46,.16);color:#8A3E22">Residential &amp; Condotel</span>
+    </div>
+    <div class="work-info">
+      <div>
+        <h2>MekongView</h2>
+        <p class="desc">A multi-property residential and condotel ecosystem on the Chroy Changvar peninsula &#8212; positioned as resort-style, nature-oriented living near downtown Phnom Penh.</p>
+        <div class="work-meta">
+          <span>Role<strong>General Manager &amp; Product Lead</strong></span>
+          <span>Timeline<strong>2014 &#8211; 2025</strong></span>
+          <span>Scale<strong>100+ rental units</strong></span>
+        </div>
+      </div>
+      <span class="view-cta">Read Case Study <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </div>
+  </a>
+
+</div>
+
+<!-- EARLIER WORK -->
+<section class="earlier">
+  <p class="earlier-head">Earlier Experience</p>
+  <div class="earlier-card">
+    <div>
+      <h3>INTHANOU Health Data Platform</h3>
+      <p>Designed and built a web application and hotline management system supporting HIV/AIDS counseling operations &#8212; using .NET, Microsoft Access, and Epi Info to collect, analyze, and surface health data for evidence-based decisions.</p>
+    </div>
+    <span class="yr">2006 &#8211; 2010</span>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Have a project in mind?</h2>
+  <p>I&#8217;d love to hear about it. Reach out and let&#8217;s start a conversation.</p>
+  <a href="mailto:bandith.say@gmail.com" class="contact-mail">bandith.say@gmail.com</a>
+</section>
+
+<footer>
+  <span>&#169; 2025 Bandith Say</span>
+  <span>Product &amp; Operations Leader</span>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+</script>
+</body>
+</html>

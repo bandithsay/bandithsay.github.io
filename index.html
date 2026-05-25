@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bandith Say — Product &amp; Operations Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --paper:#FBFAF6;--ink:#1C1A17;--ink-soft:#5B564E;--ink-faint:#948E83;
+      --line:rgba(28,26,23,.13);--line-soft:rgba(28,26,23,.07);
+      --clay:#B5532E;--clay-dark:#8A3E22;--sand:#F1ECE2;
+      --disp:'Bricolage Grotesque',system-ui,sans-serif;
+      --body:'Figtree',system-ui,sans-serif;
+      --ease:cubic-bezier(.22,.6,.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    ::selection{background:var(--clay);color:#fff}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.6rem 3.5rem;position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+    nav.scrolled{border-color:var(--line)}
+    .brand{display:flex;flex-direction:column;line-height:1.15}
+    .brand-name{font-family:var(--disp);font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+    .brand-role{font-size:.72rem;font-weight:500;letter-spacing:.04em;color:var(--ink-faint)}
+    .nav-links{display:flex;gap:.5rem;list-style:none}
+    .nav-links a{font-size:.82rem;font-weight:500;padding:.45rem .9rem;border-radius:2rem;transition:background .2s,color .2s;color:var(--ink-soft)}
+    .nav-links a:hover{background:var(--sand);color:var(--ink)}
+    .nav-links a.active{background:var(--ink);color:var(--paper)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:820px){nav{padding:1.2rem 1.4rem}.nav-links a{padding:.4rem .7rem}}
+  </style>
+</head>
+<body>
+<style>
+  .home-hero{padding:5rem 3.5rem 3rem;max-width:1100px;animation:fadeUp .9s var(--ease) both}
+  .home-hero .label{font-family:var(--disp);font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:1.5rem}
+  .home-hero h1{font-family:var(--disp);font-size:clamp(2.4rem,5vw,4.4rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;max-width:960px}
+  .home-hero h1 .accent{color:var(--clay)}
+  .home-hero .loc{display:flex;align-items:center;gap:.7rem;margin-top:2rem;font-size:.92rem;color:var(--ink-soft)}
+  .home-hero .loc .dot{width:6px;height:6px;border-radius:50%;background:var(--clay)}
+
+  .intro-band{padding:3rem 3.5rem;max-width:1100px}
+  .intro-band p{font-family:var(--disp);font-size:clamp(1.15rem,2vw,1.5rem);font-weight:400;line-height:1.5;color:var(--ink-soft);max-width:780px}
+  .intro-band p strong{color:var(--ink);font-weight:500}
+
+  .section{padding:4rem 3.5rem;max-width:1240px}
+  .section-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.5rem}
+  .section-head h2{font-family:var(--disp);font-size:1.7rem;font-weight:600;letter-spacing:-.015em}
+  .section-head .num{font-family:var(--disp);font-size:.85rem;font-weight:600;color:var(--clay)}
+  .section-head .rule{flex:1;height:1px;background:var(--line)}
+
+  /* HOW I WORK */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  .work-card{padding:2rem;border:1px solid var(--line);border-radius:18px;background:var(--paper);transition:border-color .25s,transform .25s var(--ease)}
+  .work-card:hover{border-color:var(--clay);transform:translateY(-3px)}
+  .work-icon{width:46px;height:46px;border-radius:12px;background:var(--sand);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+  .work-icon svg{width:22px;height:22px;stroke:var(--clay);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .work-card h3{font-family:var(--disp);font-size:1.15rem;font-weight:600;margin-bottom:.5rem}
+  .work-card p{font-size:.92rem;line-height:1.65;color:var(--ink-soft)}
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{display:flex;flex-direction:column}
+  .tl-item{display:grid;grid-template-columns:118px 26px 1fr;gap:0 1.6rem;padding-bottom:2.4rem}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-year{font-family:var(--disp);font-size:.86rem;font-weight:600;color:var(--ink);padding-top:.1rem;text-align:right;letter-spacing:-.01em}
+  .tl-marker{position:relative;display:flex;justify-content:center}
+  .tl-marker::before{content:'';position:absolute;top:6px;bottom:-2.4rem;width:2px;background:var(--line)}
+  .tl-item:last-child .tl-marker::before{display:none}
+  .tl-dot{width:13px;height:13px;border-radius:50%;background:var(--paper);border:2.5px solid var(--clay);margin-top:2px;z-index:1}
+  .tl-item.is-venture .tl-dot{background:var(--clay)}
+  .tl-content{padding-bottom:.2rem}
+  .tl-head{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.2rem}
+  .tl-content h3{font-family:var(--disp);font-size:1.18rem;font-weight:600;letter-spacing:-.01em}
+  .tl-tag{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .6rem;border-radius:2rem;background:var(--sand);color:var(--clay-dark)}
+  .tl-tag.venture{background:var(--clay);color:#fff}
+  .tl-org{font-size:.88rem;font-weight:500;color:var(--ink-faint);margin-bottom:.6rem}
+  .tl-desc{font-size:.92rem;line-height:1.7;color:var(--ink-soft)}
+  .tl-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--disp);font-size:.8rem;font-weight:600;color:var(--clay);margin-top:.7rem;transition:gap .2s}
+  .tl-link:hover{gap:.65rem;color:var(--clay-dark)}
+  .tl-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* SKILLS */
+  .skills-section{background:var(--sand);max-width:none;padding:4rem 3.5rem}
+  .skills-inner{max-width:1240px;margin:0 auto}
+  .skills-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+  .skill-col h4{font-family:var(--disp);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--clay);margin-bottom:1rem}
+  .skill-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .skill-list li{font-size:.92rem;color:var(--ink-soft);padding-left:1.1rem;position:relative}
+  .skill-list li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--clay)}
+  .lang-line{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);display:flex;gap:3rem;flex-wrap:wrap}
+  .lang-line .lang strong{font-family:var(--disp);font-size:1rem;font-weight:600;display:block}
+  .lang-line .lang span{font-size:.82rem;color:var(--ink-faint)}
+
+  /* INDUSTRIES */
+  .industries{display:flex;flex-wrap:wrap;gap:.7rem}
+  .industry-pill{font-family:var(--disp);font-size:1rem;font-weight:500;padding:.6rem 1.3rem;border:1px solid var(--line);border-radius:2rem;transition:background .2s,color .2s,border-color .2s}
+  .industry-pill:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  /* EDUCATION */
+  .edu-list{display:flex;flex-direction:column}
+  .edu-row{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;padding:1.4rem 0;border-top:1px solid var(--line)}
+  .edu-row:last-child{border-bottom:1px solid var(--line)}
+  .edu-degree{font-family:var(--disp);font-size:1.12rem;font-weight:500}
+  .edu-school{font-size:.88rem;color:var(--ink-faint);margin-top:.15rem}
+  .edu-type{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2rem;background:var(--sand);color:var(--clay-dark);white-space:nowrap}
+
+  /* CONTACT */
+  .contact{margin:3rem 3.5rem 0;padding:4rem 3rem;background:var(--ink);border-radius:24px;color:var(--paper);text-align:center}
+  .contact h2{font-family:var(--disp);font-size:clamp(2rem,4vw,3rem);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem}
+  .contact p{color:rgba(251,250,246,.65);max-width:480px;margin:0 auto 2rem;font-size:.98rem}
+  .contact-mail{display:inline-block;font-family:var(--disp);font-size:1.2rem;font-weight:600;color:var(--paper);padding:.9rem 2rem;border:1px solid rgba(251,250,246,.3);border-radius:2rem;transition:background .25s,color .25s}
+  .contact-mail:hover{background:var(--clay);border-color:var(--clay)}
+  .contact-meta{margin-top:2rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;font-size:.85rem;color:rgba(251,250,246,.55)}
+  .contact-meta a:hover{color:var(--paper)}
+
+  footer{padding:3rem 3.5rem;display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink-faint)}
+
+  @media(max-width:820px){
+    .home-hero,.intro-band,.section,.skills-section{padding-left:1.4rem;padding-right:1.4rem}
+    .work-grid,.skills-cols{grid-template-columns:1fr}
+    .edu-row{grid-template-columns:1fr;gap:.6rem}
+    .tl-item{grid-template-columns:18px 1fr;gap:0 1rem}
+    .tl-year{grid-column:2;text-align:left;font-size:.78rem;color:var(--clay);margin-bottom:.3rem;padding-top:0}
+    .tl-marker{grid-row:span 2}
+    .tl-content{grid-column:2}
+    .contact{margin:2rem 1.4rem 0;padding:3rem 1.5rem}
+    footer{padding:2rem 1.4rem;flex-direction:column;gap:.5rem}
+  }
+</style>
+
+<nav id="nav">
+  <a href="index.html" class="brand">
+    <span class="brand-name">Bandith Say</span>
+    <span class="brand-role">Product &amp; Operations Leader</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">About</a></li>
+    <li><a href="selected-works.html">Selected Works</a></li>
+  </ul>
+</nav>
+
+<header class="home-hero">
+  <p class="label">About Me</p>
+  <h1>I build and scale ventures &#8212; turning ideas into <span class="accent">products, operations, and businesses</span> that work.</h1>
+  <div class="loc">
+    <span class="dot"></span>
+    Based in Orlando, FL &#8212; 20+ years building across Phnom Penh, Cambodia
+  </div>
+</header>
+
+<section class="intro-band">
+  <p>
+    I&#8217;m a <strong>product operations and business strategy professional</strong> with over a decade of experience building and scaling education, real estate, and digital platform businesses &#8212; from concept and launch through long-term operation and exit, on a foundation of two decades in technology and education.
+  </p>
+</section>
+
+<!-- HOW I WORK -->
+<section class="section">
+  <div class="section-head">
+    <span class="num">01</span>
+    <h2>How I work</h2>
+    <span class="rule"></span>
+  </div>
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <h3>Build from 0 to 1</h3>
+      <p>I take ventures from a blank page to a working business &#8212; market positioning, product architecture, campus or platform design, and launch.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+      <h3>Operate &amp; scale</h3>
+      <p>I run complex operations across teams &#8212; optimizing workflows, customer experience, and process so the business performs consistently as it grows.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+      <h3>Decide with data</h3>
+      <p>I use research, metrics, and direct user insight to guide product and business decisions &#8212; not assumptions.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="10" r="2.6"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M14.5 17.5a4 4 0 0 1 6 1.5"/></svg></div>
+      <h3>Lead cross-functional teams</h3>
+      <p>I build, train, and coordinate teams &#8212; remote and on-site &#8212; aligning people around shared goals and clear execution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section">
+  <div class="section-head">
+    <span class="num">02</span>
+    <h2>Experience</h2>
+    <span class="rule"></span>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item is-venture">
+      <div class="tl-year">2014 &#8211; 2025</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>General Manager &amp; Product Lead</h3>
+          <span class="tl-tag">Real Estate</span>
+        </div>
+        <p class="tl-org">MekongView &#183; Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Led product strategy, property operations, leasing, and go-to-market across a multi-property residential and condotel ecosystem of 100+ rental units &#8212; positioning MekongView as a nature-oriented living alternative near the city center.</p>
+        <a class="tl-link" href="mekongview-case-study.html">View case study <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tl-item is-venture">
+      <div class="tl-year">2012 &#8211; 2024</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>Founder &amp; Product Lead</h3>
+          <span class="tl-tag venture">Venture &#183; Exited</span>
+        </div>
+        <p class="tl-org">Bamboo International School &#183; Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Founded and built an affordable hybrid international school from concept to a 130-student institution with 50 staff and ~$40K monthly revenue. Led market positioning, curriculum architecture, campus design, and operations across a full 12-year lifecycle, exiting via sale in 2024.</p>
+        <a class="tl-link" href="bamboo-case-study.html">View case study <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tl-item is-venture">
+      <div class="tl-year">2020 &#8211; 2022</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>Co-Founder &amp; Chief Business Officer</h3>
+          <span class="tl-tag venture">Venture</span>
+        </div>
+        <p class="tl-org">A1Career &#183; Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Co-founded a two-sided recruitment platform, leading product strategy, business model design, and go-to-market &#8212; scaling from 0 to 50 employers and 300+ job seekers, and driving organic growth through a content team producing 100+ videos.</p>
+        <a class="tl-link" href="a1career-case-study.html">View case study <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2010 &#8211; 2015</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>Information Technology Senior Officer</h3>
+          <span class="tl-tag">Technology</span>
+        </div>
+        <p class="tl-org">Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Provided IT support and infrastructure management &#8212; system setup, troubleshooting, user training, and data backup and recovery &#8212; ensuring secure, reliable technology operations and business continuity across the organization.</p>
+      </div>
+    </div>
+
+    <div class="tl-item is-venture">
+      <div class="tl-year">2010 &#8211; 2012</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>Real Estate Development &amp; Investment</h3>
+          <span class="tl-tag venture">Venture</span>
+        </div>
+        <p class="tl-org">Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Co-invested in and managed the non-construction lifecycle of a 64,600 sq. ft. warehouse asset on 2.47 acres, and led go-to-market, pricing, and sales for a 14-unit residential development &#8212; achieving full sell-through within a 2.5-year delivery cycle.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2006 &#8211; 2010</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>Desktop Support Officer</h3>
+          <span class="tl-tag">Technology</span>
+        </div>
+        <p class="tl-org">INTHANOU Association &#183; Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Designed and maintained a health counseling hotline management system, and built a customer-facing web application using .NET, Microsoft Access, and Epi Info to collect, analyze, and report health data &#8212; supporting HIV/AIDS counseling operations and data-driven decisions.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">2003 &#8211; 2006</div>
+      <div class="tl-marker"><span class="tl-dot"></span></div>
+      <div class="tl-content">
+        <div class="tl-head">
+          <h3>Computer Instructor</h3>
+          <span class="tl-tag">Education</span>
+        </div>
+        <p class="tl-org">Western International School &#183; Phnom Penh, Cambodia</p>
+        <p class="tl-desc">Developed and delivered learner-centered IT curriculum for grades 3, 5, 8, and 11 &#8212; using student performance data and feedback to refine assessments and improve learning outcomes.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="skills-inner">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>Core skills</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="skills-cols">
+      <div class="skill-col">
+        <h4>Product &amp; Strategy</h4>
+        <ul class="skill-list">
+          <li>Product Operations</li>
+          <li>0&#8594;1 Product Development</li>
+          <li>Go-to-Market Strategy</li>
+          <li>Marketplace Platforms</li>
+          <li>UX Thinking</li>
+          <li>Business Model Design</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Operations &amp; Delivery</h4>
+        <ul class="skill-list">
+          <li>Business Operations</li>
+          <li>Workflow Optimization</li>
+          <li>Process Improvement</li>
+          <li>Cross-Functional Collaboration</li>
+          <li>Customer Experience</li>
+          <li>Remote Team Coordination</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Tools &amp; Platforms</h4>
+        <ul class="skill-list">
+          <li>Google Workspace &amp; Microsoft 365</li>
+          <li>Notion, Trello, Slack</li>
+          <li>CRM Platforms &amp; Basic SQL</li>
+          <li>Canva, WordPress</li>
+          <li>AI &amp; Automation Tools</li>
+          <li>UX Research &amp; Process Docs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lang-line">
+      <div class="lang"><strong>Khmer</strong><span>Native proficiency</span></div>
+      <div class="lang"><strong>English</strong><span>Professional working proficiency</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section">
+  <div class="section-head">
+    <span class="num">04</span>
+    <h2>Industries</h2>
+    <span class="rule"></span>
+  </div>
+  <div class="industries">
+    <span class="industry-pill">Education &amp; EdTech</span>
+    <span class="industry-pill">Real Estate</span>
+    <span class="industry-pill">Recruitment &amp; HR Tech</span>
+    <span class="industry-pill">Digital Platforms</span>
+    <span class="industry-pill">Startups</span>
+    <span class="industry-pill">Hospitality</span>
+    <span class="industry-pill">Information Technology</span>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section">
+  <div class="section-head">
+    <span class="num">05</span>
+    <h2>Education &amp; certifications</h2>
+    <span class="rule"></span>
+  </div>
+  <div class="edu-list">
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">B.S. Computer Science &amp; Engineering</div>
+        <div class="edu-school">Royal University of Phnom Penh</div>
+      </div>
+      <span class="edu-type">Degree</span>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">B.A. English</div>
+        <div class="edu-school">Royal University of Phnom Penh</div>
+      </div>
+      <span class="edu-type">Degree</span>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">Certified Digital Marketing Professional</div>
+        <div class="edu-school">Digital Marketing Institute</div>
+      </div>
+      <span class="edu-type">Certificate</span>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">UX Design Certificate</div>
+        <div class="edu-school">Google</div>
+      </div>
+      <span class="edu-type">Certificate</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2>Let&#8217;s build something that lasts.</h2>
+  <p>Open to product operations, business strategy, and venture-building roles. Always happy to talk through an interesting problem.</p>
+  <a href="mailto:bandith.say@gmail.com" class="contact-mail">bandith.say@gmail.com</a>
+  <div class="contact-meta">
+    <span>(407) 595-2749</span>
+    <span>Orlando, FL</span>
+    <a href="#" target="_blank">LinkedIn &#x2197;</a>
+  </div>
+</section>
+
+<footer>
+  <span>&#169; 2025 Bandith Say</span>
+  <span>Product &amp; Operations Leader</span>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
+</script>
+</body>
+</html>

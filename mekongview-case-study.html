@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MekongView — Case Study | Bandith Say</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper:#FBFAF6;--ink:#1C1A17;--ink-soft:#5B564E;--ink-faint:#948E83;
+    --line:rgba(28,26,23,.13);--line-soft:rgba(28,26,23,.07);
+    --clay:#B5532E;--clay-dark:#8A3E22;--sand:#F1ECE2;
+    --disp:'Bricolage Grotesque',system-ui,sans-serif;
+    --body:'Figtree',system-ui,sans-serif;
+    --ease:cubic-bezier(.22,.6,.36,1);
+    --tint:#B5532E;--tint-dark:#8A3E22;--tint-bg:#F1E4D9;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:0}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--clay);color:#fff}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.6rem 3.5rem;position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+  nav.scrolled{border-color:var(--line)}
+  .brand-name{font-family:var(--disp);font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+  .nav-back{font-size:.82rem;font-weight:500;color:var(--ink-soft);display:flex;align-items:center;gap:.45rem;padding:.45rem .9rem;border-radius:2rem;transition:background .2s,color .2s}
+  .nav-back:hover{background:var(--sand);color:var(--ink)}
+  .nav-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  /* HERO */
+  .cs-hero{padding:4.5rem 3.5rem 2.5rem;max-width:1100px;animation:fadeUp .9s var(--ease) both}
+  .cs-eyebrow{font-family:var(--disp);font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:1.2rem}
+  .cs-title{font-family:var(--disp);font-size:clamp(2.6rem,5.5vw,4.8rem);font-weight:500;line-height:1.04;letter-spacing:-.03em;margin-bottom:1.4rem}
+  .cs-sub{font-size:1.1rem;line-height:1.6;color:var(--ink-soft);max-width:680px}
+
+  /* META */
+  .cs-meta{display:flex;flex-wrap:wrap;gap:2.2rem;padding:2rem 3.5rem;max-width:1100px}
+  .cs-meta-item .l{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.25rem}
+  .cs-meta-item .v{font-family:var(--disp);font-size:.96rem;font-weight:500}
+  .cs-meta-item .v a{color:var(--clay);text-decoration:underline;text-underline-offset:3px}
+  .cs-meta-item .v a:hover{color:var(--clay-dark)}
+
+  /* COVER BANNER */
+  .cs-cover{margin:1.5rem 3.5rem 0;border-radius:24px;overflow:hidden;height:280px;animation:fadeUp .8s .1s var(--ease) both}
+  .cs-cover svg{width:100%;height:100%;display:block}
+
+  /* STAT STRIP */
+  .cs-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:3rem 3.5rem;max-width:1240px}
+  .cs-stat{padding:1.6rem 1.5rem;background:var(--tint-bg);border-radius:18px}
+  .cs-stat .n{font-family:var(--disp);font-size:2.3rem;font-weight:600;letter-spacing:-.02em;color:var(--tint-dark);line-height:1}
+  .cs-stat .l{font-size:.78rem;font-weight:500;color:var(--ink-soft);margin-top:.45rem}
+
+  /* BODY */
+  .cs-body{display:grid;grid-template-columns:190px 1fr;gap:0 4.5rem;padding:1rem 3.5rem 4rem;max-width:1100px}
+  .cs-toc{position:sticky;top:6rem;align-self:start}
+  .toc-l{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.9rem}
+  .toc-link{display:block;font-size:.83rem;color:var(--ink-faint);padding:.32rem 0 .32rem .8rem;border-left:2px solid var(--line);transition:color .2s,border-color .2s}
+  .toc-link:hover,.toc-link.active{color:var(--clay);border-color:var(--clay)}
+
+  .cs-section{padding:3.5rem 0;border-top:1px solid var(--line)}
+  .cs-section:first-child{border-top:none;padding-top:1rem}
+  .s-num{font-family:var(--disp);font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-bottom:.7rem}
+  .cs-section h2{font-family:var(--disp);font-size:1.85rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:1.3rem}
+  .cs-section p{font-size:.97rem;line-height:1.78;color:var(--ink-soft);margin-bottom:1.1rem}
+  .cs-section p:last-child{margin-bottom:0}
+  .cs-section p strong{color:var(--ink);font-weight:600}
+
+  .quote{margin:2.2rem 0;padding:1.7rem 1.9rem;background:var(--tint-bg);border-radius:18px}
+  .quote p{font-family:var(--disp);font-style:normal;font-size:1.2rem;font-weight:500;line-height:1.45;color:var(--ink);margin:0}
+
+  /* GENERIC CARD GRID */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.8rem 0}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.8rem 0}
+  .card{padding:1.4rem 1.5rem;border:1px solid var(--line);border-radius:16px;background:var(--paper)}
+  .card .k{font-family:var(--disp);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-bottom:.5rem}
+  .card h3{font-family:var(--disp);font-size:1.02rem;font-weight:600;margin-bottom:.35rem}
+  .card p{font-size:.86rem;line-height:1.6;color:var(--ink-soft);margin:0}
+  .card .big{font-family:var(--disp);font-size:1.9rem;font-weight:600;color:var(--tint-dark);line-height:1;margin-bottom:.4rem}
+
+  /* CHECK LIST */
+  .clist{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;margin:1.4rem 0}
+  .clist .ci{display:flex;gap:.6rem;font-size:.9rem;color:var(--ink-soft);padding:.45rem 0;align-items:flex-start}
+  .clist .ci .dot{width:6px;height:6px;border-radius:50%;background:var(--clay);flex-shrink:0;margin-top:.5em}
+
+  /* FEATURE ROWS */
+  .frow{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;padding:1.3rem 0;border-bottom:1px solid var(--line)}
+  .frow:first-of-type{border-top:1px solid var(--line)}
+  .frow .fi{width:42px;height:42px;border-radius:11px;background:var(--tint-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .frow .fi svg{width:20px;height:20px;stroke:var(--tint-dark);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .frow h3{font-family:var(--disp);font-size:1.04rem;font-weight:600;margin-bottom:.25rem}
+  .frow p{font-size:.88rem;line-height:1.6;color:var(--ink-soft);margin:0}
+
+  /* LESSONS */
+  .lessons{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.4rem}
+  .lesson{display:grid;grid-template-columns:2.2rem 1fr;gap:.7rem;align-items:start}
+  .lesson .m{font-family:var(--disp);font-size:1.5rem;font-weight:600;color:var(--clay);line-height:1.1}
+  .lesson p{font-size:.94rem;line-height:1.75;color:var(--ink-soft);margin:0}
+  .lesson p strong{color:var(--ink);font-weight:600}
+
+  /* NEXT */
+  .cs-next{margin:0 3.5rem 4rem;padding:2.4rem 2.6rem;border:1px solid var(--line);border-radius:22px;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;transition:border-color .25s,background .25s;cursor:pointer}
+  .cs-next:hover{border-color:var(--ink);background:var(--sand)}
+  .cs-next .l{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.35rem}
+  .cs-next .t{font-family:var(--disp);font-size:1.6rem;font-weight:600;letter-spacing:-.015em}
+  .cs-next .arr{font-family:var(--disp);font-size:1.8rem;color:var(--clay)}
+
+  footer{padding:3rem 3.5rem;display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink-faint);border-top:1px solid var(--line)}
+
+  @media(max-width:820px){
+    nav{padding:1.2rem 1.4rem}
+    .cs-hero,.cs-meta,.cs-stats,.cs-body{padding-left:1.4rem;padding-right:1.4rem}
+    .cs-cover{margin:1rem 1.4rem 0;height:170px}
+    .cs-stats{grid-template-columns:1fr 1fr}
+    .cs-body{grid-template-columns:1fr;gap:0}
+    .cs-toc{display:none}
+    .grid-2,.grid-3,.clist{grid-template-columns:1fr}
+    .cs-next{margin:0 1.4rem 3rem;flex-direction:column;align-items:flex-start}
+    footer{padding:2rem 1.4rem;flex-direction:column;gap:.5rem}
+  }
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="selected-works.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>
+    All Works
+  </a>
+  <a href="index.html" class="brand-name">Bandith Say</a>
+</nav>
+<header class="cs-hero">
+  <p class="cs-eyebrow">Case Study &#8212; Real Estate Product</p>
+  <h1 class="cs-title">MekongView</h1>
+  <p class="cs-sub">How I positioned and operated a multi-property residential and condotel ecosystem on the Chroy Changvar peninsula &#8212; resort-style, nature-oriented living near downtown Phnom Penh.</p>
+</header>
+<div class="cs-meta">
+<div class="cs-meta-item"><p class="l">Role</p><p class="v">General Manager &amp; Product Lead</p></div><div class="cs-meta-item"><p class="l">Timeline</p><p class="v">2014 &#8211; 2025</p></div><div class="cs-meta-item"><p class="l">Product Type</p><p class="v">Real Estate (Residential &amp; Condotel)</p></div><div class="cs-meta-item"><p class="l">Location</p><p class="v">Chroy Changvar, Phnom Penh</p></div><div class="cs-meta-item"><p class="l">Website</p><p class="v"><a href="https://condo.mekongviewcondo.com/" target="_blank">condo.mekongviewcondo.com &#x2197;</a></p></div>
+</div>
+<div class="cs-cover">
+<svg viewBox="0 0 1100 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="280" fill="#EFE0D5"/>
+  <circle cx="550" cy="78" r="46" fill="#B5532E" opacity="0.32"/>
+  <g fill="#9A7359" opacity="0.62">
+    <rect x="150" y="60" width="42" height="150"/><rect x="206" y="28" width="50" height="182"/>
+    <rect x="270" y="88" width="40" height="122"/>
+    <rect x="800" y="44" width="48" height="166"/><rect x="862" y="78" width="42" height="132"/>
+    <rect x="916" y="22" width="46" height="188"/>
+  </g>
+  <path d="M0 200 Q 275 165 550 195 T 1100 188 V280 H0 Z" fill="#C9A98E" opacity="0.6"/>
+  <path d="M0 232 Q 275 202 550 232 T 1100 226 V280 H0 Z" fill="#B5532E" opacity="0.3"/>
+  <text x="550" y="148" font-family="Bricolage Grotesque,sans-serif" font-size="46" font-weight="600" fill="#8A3E22" text-anchor="middle">MekongView</text>
+  <text x="550" y="178" font-family="Figtree,sans-serif" font-size="14" font-weight="500" fill="#9A7359" text-anchor="middle" letter-spacing="2.5">RESIDENTIAL &amp; CONDOTEL</text>
+</svg>
+</div>
+<div class="cs-stats">
+<div class="cs-stat"><div class="n">100+</div><div class="l">Rental units</div></div><div class="cs-stat"><div class="n">11</div><div class="l">Years operating</div></div><div class="cs-stat"><div class="n">5</div><div class="l">Unit types offered</div></div><div class="cs-stat"><div class="n">10&#8211;15</div><div class="l">Min to downtown</div></div>
+</div>
+<div class="cs-body">
+  <aside class="cs-toc">
+    <p class="toc-l">Contents</p>
+    <a class="toc-link" href="#problem">The Problem</a><a class="toc-link" href="#strategy">Product Strategy</a><a class="toc-link" href="#experience">Product Experience</a><a class="toc-link" href="#users">Target Users</a><a class="toc-link" href="#gtm">Go-to-Market</a><a class="toc-link" href="#impact">Impact</a><a class="toc-link" href="#lessons">Key Learnings</a>
+  </aside>
+  <main>
+<section class="cs-section" id="problem">
+  <p class="s-num">01 &#8212; The Problem</p>
+  <h2>Urban growth that priced out quiet living</h2>
+  <p>Phnom Penh&#8217;s rapid urban development increased demand for housing in the city center &#8212; but it also drove rental prices higher and reduced access to quiet living environments.</p>
+<p>Residents and expatriates increasingly wanted two things that were hard to find together: <strong>affordable housing alternatives</strong> and <strong>a quieter, nature-oriented living environment</strong> &#8212; both within reasonable proximity to the city center.</p>
+<p>Most condominiums, however, sat in dense urban areas with limited space and higher rental costs.</p>
+<div class="quote"><p>&#8220;The opportunity wasn&#8217;t another city condo. It was resort-style living near the city &#8212; affordable enough for residents and attractive enough for investors.&#8221;</p></div>
+</section>
+<section class="cs-section" id="strategy">
+  <p class="s-num">02 &#8212; Product Strategy</p>
+  <h2>Three strategic advantages</h2>
+  <p>As General Manager and Product Lead, I positioned MekongView around three strategic advantages that together differentiated it from typical urban condominiums.</p>
+<div class="grid-3">
+  <div class="card"><p class="k">Advantage One</p><h3>Nature near the city</h3><p>Sited on the Chroy Changvar peninsula with Mekong and Tonle Sap river views &#8212; a retreat-like setting just 10&#8211;15 minutes from downtown.</p></div>
+  <div class="card"><p class="k">Advantage Two</p><h3>Residential + condotel</h3><p>A condotel model serving both long-term residents and short-term visitors &#8212; letting owners and investors generate rental income.</p></div>
+  <div class="card"><p class="k">Advantage Three</p><h3>Variety of unit types</h3><p>Studios through one-, two-, and three-bedroom units and duplex penthouses &#8212; matching different customer segments.</p></div>
+</div>
+<p>Together, these positioned MekongView as a residential <strong>product</strong> &#8212; not just a building &#8212; with a clear and defensible market identity.</p>
+</section>
+<section class="cs-section" id="experience">
+  <p class="s-num">03 &#8212; Product Experience</p>
+  <h2>A multi-property residential ecosystem</h2>
+  <p>The project was designed as a <strong>multi-property residential ecosystem</strong> rather than a single building &#8212; with shared facilities that created a resort-style living experience across the development.</p>
+<div class="clist">
+  <div class="ci"><span class="dot"></span>Infinity rooftop swimming pools</div>
+  <div class="ci"><span class="dot"></span>River-view sky lounges</div>
+  <div class="ci"><span class="dot"></span>Restaurants and recreational spaces</div>
+  <div class="ci"><span class="dot"></span>Shared facilities accessible to residents</div>
+</div>
+<p>These amenities were a deliberate differentiation strategy: by designing the experience at the ecosystem level rather than per-building, MekongView could offer something individual urban condos structurally could not.</p>
+</section>
+<section class="cs-section" id="users">
+  <p class="s-num">04 &#8212; Target Users</p>
+  <h2>Four distinct customer segments</h2>
+  <p>The product was designed to serve multiple user segments &#8212; each with different needs that the mixed-use model and unit variety could address.</p>
+<div class="grid-2">
+  <div class="card"><p class="k">Segment 01</p><h3>Investors</h3><p>Local property investors seeking rental income and long-term property value.</p></div>
+  <div class="card"><p class="k">Segment 02</p><h3>Urban professionals</h3><p>Young Cambodian professionals and couples looking for affordable condominiums near the city center.</p></div>
+  <div class="card"><p class="k">Segment 03</p><h3>Expatriates</h3><p>Foreign residents seeking larger, quieter living spaces outside the dense city center.</p></div>
+  <div class="card"><p class="k">Segment 04</p><h3>Tourists</h3><p>Short-term visitors and group travelers attracted by the condotel concept and large apartment units.</p></div>
+</div>
+</section>
+<section class="cs-section" id="gtm">
+  <p class="s-num">05 &#8212; Go-to-Market</p>
+  <h2>Putting the peninsula on the map</h2>
+  <p>Marketing and sales were designed to raise awareness of the Chroy Changvar peninsula area and highlight MekongView&#8217;s lifestyle advantages.</p>
+<div class="clist">
+  <div class="ci"><span class="dot"></span>Digital marketing through websites, Facebook, and Google ads</div>
+  <div class="ci"><span class="dot"></span>Partnerships with real estate brokers and travel platforms</div>
+  <div class="ci"><span class="dot"></span>Events and promotional campaigns to attract expatriates and investors</div>
+  <div class="ci"><span class="dot"></span>Positioning MekongView as a weekend getaway destination for Phnom Penh residents</div>
+</div>
+<p>The strategy treated lifestyle &#8212; not just square footage &#8212; as the thing being sold.</p>
+</section>
+<section class="cs-section" id="impact">
+  <p class="s-num">06 &#8212; Impact</p>
+  <h2>A residential brand within Chroy Changvar</h2>
+  <p>MekongView operated as a residential ecosystem of multiple buildings and more than 100 rental units.</p>
+<div class="grid-2">
+  <div class="card"><div class="big">100+</div><h3>Rental units operated</h3><p>Across multiple buildings, spanning serviced apartments and residential units.</p></div>
+  <div class="card"><div class="big">11</div><h3>Years of operation</h3><p>Sustained product strategy, operations, and leasing from 2014 through 2025.</p></div>
+</div>
+<p>Key outcomes included successful operation of serviced apartments and residential units, the development of a <strong>multi-property residential brand</strong> within Chroy Changvar, strong positioning as a nature-oriented alternative near the city center, and sustained rental and investment interest in the area.</p>
+</section>
+<section class="cs-section" id="lessons">
+  <p class="s-num">07 &#8212; Key Learnings</p>
+  <h2>Treating real estate as a product</h2>
+  <p>Developing real estate as a product requires balancing location strategy, pricing, lifestyle positioning, and operational management together &#8212; not as separate workstreams.</p>
+<div class="lessons">
+  <div class="lesson"><span class="m">1</span><p><strong>Lifestyle positioning differentiates.</strong> Lifestyle &#8212; nature, river views, a retreat feel &#8212; can set a residential project apart from typical city condos far more effectively than price or specs alone.</p></div>
+  <div class="lesson"><span class="m">2</span><p><strong>Ecosystems beat isolated buildings.</strong> A multi-property ecosystem with shared amenities creates stronger brand value than any single building could on its own.</p></div>
+  <div class="lesson"><span class="m">3</span><p><strong>Experience marketing builds markets.</strong> Experiential marketing and events increased property awareness and investor interest &#8212; helping put an entire peninsula on buyers&#8217; maps.</p></div>
+  <div class="lesson"><span class="m">4</span><p><strong>One product, many segments.</strong> Designing unit variety and a mixed residential-condotel model let a single development serve investors, professionals, expatriates, and tourists at once.</p></div>
+</div>
+</section>
+  </main>
+</div>
+<div class="cs-next" onclick="location.href='bamboo-case-study.html'">
+  <div>
+    <p class="l">Next Project</p>
+    <p class="t">Bamboo International School</p>
+  </div>
+  <span class="arr">&#x2192;</span>
+</div>
+<footer>
+  <span>&#169; 2025 Bandith Say</span>
+  <span>Product &amp; Operations Leader</span>
+</footer>
+<script>
+  const nav=document.getElementById('nav');
+  const links=document.querySelectorAll('.toc-link');
+  const secs=document.querySelectorAll('.cs-section[id]');
+  addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',scrollY>10);
+    let cur='';
+    secs.forEach(s=>{if(scrollY>=s.offsetTop-130)cur=s.id;});
+    links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+  },{passive:true});
+</script>
+</body>
+</html>
